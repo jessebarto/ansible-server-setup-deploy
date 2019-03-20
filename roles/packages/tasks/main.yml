@@ -1,0 +1,27 @@
+---
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 2000
+
+- name: Wait for /var/lib/dpkg/lock-frontend to be released
+  shell: while lsof /var/lib/dpkg/lock-frontend ; do sleep 10; done
+
+- name: Install build essentials
+  command: apt-get install build-essential -y
+  become: true
+
+- name: Install utility and misc packages
+  apt:
+    name: ["git", "tree", "htop"]
+    state: present
+  become: true
+
+- name: create app directory
+  file:
+    path: "/home/ubuntu/beerfest"
+    state: directory
+    mode: 0755
