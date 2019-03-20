@@ -1,0 +1,13 @@
+---
+- name: Clone Hackathon starter project
+  git:
+    repo: https://github.com/sahat/hackathon-starter.git
+    version: master
+    dest: /home/ubuntu/beerfest
+    accept_hostkey: yes
+  become: yes
+
+- name: init project
+  shell: npm install > /home/ubuntu/npm_install_log
+  args:
+    chdir: /home/ubuntu/beerfest
