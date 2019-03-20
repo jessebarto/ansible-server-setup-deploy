@@ -1,0 +1,4 @@
+#copy this file to /etc/ansible/hosts or change ansible.cfg to point to the file
+
+[local]
+localhost ansible_connection=local
