@@ -11,6 +11,6 @@
       version: master
 
   - name: restart app express
-    command: killall node; node app.js
+    command: node app.js
     args:  
       chdir: /home/ubuntu/beerfest
