@@ -1,1 +1,15 @@
+---
 
+- name: Deploy new app code and restart services
+  hosts: local
+  tasks:
+
+#git pull app repo
+  - git: 
+      repo: https://github.com/sahat/hackathon-starter.git
+      dest: /home/ubuntu/beerfest
+      version: master
+
+  - name: restart app express
+    shell: killall node; node app.js
+    chdir: /home/ubuntu/beerfest
